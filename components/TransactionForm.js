@@ -15,25 +15,17 @@ const TransactionForm = ({ addTransaction }) => {
     return (
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <label>
-            Name of cryptocurrency:
-            <input name="name" type="text" ref={register({ required: true })} />
-          </label>
+          I bought&nbsp;
+          <input className="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block appearance-none leading-normal" placeholder="amount" name="amount" type="number" step="any" ref={register({ required: true, min: 0 })} />
+          &nbsp;of&nbsp;
+          <input placeholder="name of cryptocurrency" name="name" type="text" ref={register({ required: true })} />
+          &nbsp;at&nbsp;
+          <input placeholder="price at purchase" name="price" type="number"  step="any" ref={register({ required: true, min: 0 })} />
+        </div>
+        <div>
           { errors.name && "Name is required"}
-        </div>
-        <div>
-          <label>
-            Amount Purchased:
-            <input name="amount" type="number" step="any" ref={register({ required: true, min: 0 })} />
-          </label>
           { errors.amount && "Amount is required and must be a valid number"}
-        </div>
-        <div>
-          <label>
-            Price at purchase:
-            <input name="price" type="number"  step="any" ref={register({ required: true, min: 0 })} />
-            { errors.price && "Price is required and must be a valid number"}
-          </label>
+          { errors.price && "Price is required and must be a valid number"}
         </div>
         <input type="submit" />
       </form>
