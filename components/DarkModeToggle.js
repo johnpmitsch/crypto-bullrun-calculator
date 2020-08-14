@@ -1,6 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { RiSunLine, RiMoonClearLine } from 'react-icons/ri';
 
 const DarkModeToggle = () => {
+  const [userColorScheme, setUserColorScheme] = useState('default');
+
   const getPreferredColorScheme = () => {
     const darkQuery = '(prefers-color-scheme: dark)';
     const darkMQL = window.matchMedia ? window.matchMedia(darkQuery) : {};
@@ -11,22 +14,35 @@ const DarkModeToggle = () => {
     return 'default';
   };
 
-  const toggle = () => {
-    const colorScheme = document.documentElement.getAttribute(
-      'data-color-scheme'
-    );
-    document.documentElement.setAttribute(
-      'data-color-scheme',
-      colorScheme === 'default' ? 'dark' : 'default'
-    );
+  const getBrowserColorScheme = () => {
+    return document.documentElement.getAttribute('data-color-scheme');
   };
 
+  const setBrowserColorScheme = (scheme) => {
+    return document.documentElement.setAttribute('data-color-scheme', scheme);
+  };
+
+  const toggle = () => {
+    const colorScheme = getBrowserColorScheme();
+    const newColorScheme = colorScheme === 'default' ? 'dark' : 'default';
+    setUserColorScheme(newColorScheme);
+  };
+
+  // Set initial prefered color scheme from OS
   useEffect(() => {
-    const colorScheme = getPreferredColorScheme();
-    document.documentElement.setAttribute('data-color-scheme', colorScheme);
+    setUserColorScheme(getPreferredColorScheme());
   }, []);
 
-  return <button onClick={toggle}>Toggle Dark Mode</button>;
+  // Update color scheme in browser when user changes
+  useEffect(() => {
+    setBrowserColorScheme(userColorScheme);
+  }, [userColorScheme]);
+
+  return (
+    <button onMouseDown={(e) => e.preventDefault()} onClick={toggle}>
+      {userColorScheme == 'dark' ? <RiMoonClearLine /> : <RiSunLine />}
+    </button>
+  );
 };
 
 export default DarkModeToggle;
