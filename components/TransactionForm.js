@@ -7,7 +7,8 @@ const TransactionForm = ({ addTransaction }) => {
   const { errors, register, setValue, handleSubmit } = useForm();
   const inputClass =
     'bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 appearance-none text';
-  const newTransactionClass = 'w-full lg:w-1/3 items-end';
+  const transactionWordClass = 'w-full lg:w-1/12 text-xl';
+  const transactionInputClass = 'w-full lg:w-3/12';
 
   const onSubmit = ({ name, amount, price }) => {
     addTransaction({ name, amount, price });
@@ -28,38 +29,46 @@ const TransactionForm = ({ addTransaction }) => {
         <ErrorAlert message={'Price is required and must be a valid number'} />
       )}
 
-      <div className="w-full px-2">
+      <div className="w-full px-2 py-4">
         <form className={'flex flex-wrap'} onSubmit={handleSubmit(onSubmit)}>
-          <div className={newTransactionClass}>
+          <div className={transactionWordClass}>
             <span>I bought&nbsp;</span>
+          </div>
+          <div className={transactionInputClass}>
             <NumberInput
               ref={register({ required: true, min: 0 })}
               name={'amount'}
               placeholder={'amount'}
             />
           </div>
-          <div className={newTransactionClass}>
+          <div className={transactionWordClass}>
             <span>&nbsp;of&nbsp;</span>
+          </div>
+          <div className={transactionInputClass}>
             <input
               className={`${inputClass} flex-grow`}
-              placeholder="name of cryptocurrency"
+              placeholder="cryptocurrency name"
               name="name"
               type="text"
               ref={register({ required: true })}
             />
           </div>
-          <div className={newTransactionClass}>
+          <div className={transactionWordClass}>
             <span>&nbsp;at&nbsp;</span>
+          </div>
+          <div className={transactionInputClass}>
             <NumberInput
               ref={register({ required: true, min: 0 })}
               placeholder={'price at purchase'}
               name={'price'}
             />
           </div>
-          <input
-            type="submit"
-            className="bg-primary hover:bg-primaryHover text-background font-bold py-2 px-4 rounded"
-          />
+          <div className="w-full py-4">
+            <input
+              type="submit"
+              className="bg-primary hover:bg-primaryHover text-background font-bold py-2 px-4 rounded"
+            />
+          </div>
         </form>
       </div>
     </div>

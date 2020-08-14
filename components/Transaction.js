@@ -1,11 +1,20 @@
 import React, { Fragment } from 'react';
 
-const Transaction = ({ name, price, amount }) => {
+const Transaction = ({ transaction, removeTransaction }) => {
+  const { name, price, amount, created } = transaction;
   return (
     <Fragment>
-      <div>{name}</div>
-      <div>{price}</div>
-      <div>{amount}</div>
+      <div className={'text-lg text-center'}>
+        {amount} {name} was bought for {price}
+      </div>
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          removeTransaction(created);
+        }}
+      >
+        x
+      </button>
     </Fragment>
   );
 };
