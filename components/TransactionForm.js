@@ -6,7 +6,8 @@ import NumberInput from './inputs/NumberInput';
 const TransactionForm = ({ addTransaction }) => {
   const { errors, register, setValue, handleSubmit } = useForm();
   const inputClass =
-    'bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 appearance-none';
+    'bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 appearance-none text';
+  const newTransactionClass = 'w-1/3 lg:w-full lg:items-center p-2';
 
   const onSubmit = ({ name, amount, price }) => {
     addTransaction({ name, amount, price });
@@ -16,53 +17,52 @@ const TransactionForm = ({ addTransaction }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="items-center">I bought&nbsp;</div>
-      <div className="items-center">
-        <NumberInput
-          ref={register({ required: true, min: 0 })}
-          name={'amount'}
-          placeholder={'amount'}
-        />
-      </div>
-      <div className="items-center">&nbsp;of&nbsp;</div>
-      <div className="items-center">
-        <input
-          className={inputClass}
-          placeholder="name of cryptocurrency"
-          name="name"
-          type="text"
-          ref={register({ required: true })}
-        />
-      </div>
-      <div className="items-center">&nbsp;at&nbsp;</div>
-      <div className="items-center">
-        <NumberInput
-          ref={register({ required: true, min: 0 })}
-          placeholder={'price at purchase'}
-          name={'price'}
-        />
-      </div>
-      <div className="items-center">
-        {errors.amount && (
-          <ErrorAlert
-            message={'Amount is required and must be a valid number'}
+    <div className="flex flex-wrap -mx-2 text-center items-center">
+      {errors.amount && (
+        <ErrorAlert message={'Amount is required and must be a valid number'} />
+      )}
+      {errors.name && (
+        <ErrorAlert message={'Name of cryptocurrency is required'} />
+      )}
+      {errors.price && (
+        <ErrorAlert message={'Price is required and must be a valid number'} />
+      )}
+
+      <form className={'w-full'} onSubmit={handleSubmit(onSubmit)}>
+        <div className="lg:flex my-6">
+          <div className={newTransactionClass}>
+            <span>I bought&nbsp;</span>
+            <NumberInput
+              ref={register({ required: true, min: 0 })}
+              name={'amount'}
+              placeholder={'amount'}
+            />
+          </div>
+          <div className={newTransactionClass}>
+            <span>&nbsp;of&nbsp;</span>
+            <input
+              className={inputClass}
+              placeholder="name of cryptocurrency"
+              name="name"
+              type="text"
+              ref={register({ required: true })}
+            />
+          </div>
+          <div className={newTransactionClass}>
+            <span>&nbsp;at&nbsp;</span>
+            <NumberInput
+              ref={register({ required: true, min: 0 })}
+              placeholder={'price at purchase'}
+              name={'price'}
+            />
+          </div>
+          <input
+            type="submit"
+            className="bg-primary hover:bg-primaryHover text-background font-bold py-2 px-4 rounded"
           />
-        )}
-        {errors.name && (
-          <ErrorAlert message={'Name of cryptocurrency is required'} />
-        )}
-        {errors.price && (
-          <ErrorAlert
-            message={'Price is required and must be a valid number'}
-          />
-        )}
-      </div>
-      <input
-        type="submit"
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      />
-    </form>
+        </div>
+      </form>
+    </div>
   );
 };
 

@@ -19,6 +19,7 @@ module.exports = {
       accentHover: 'var(--color-accent-hover)',
       muted: 'var(--color-muted)',
       mutedHover: 'var(--color-muted-hover)',
+      red: 'var(--color-red)',
     },
   },
   plugins: [],

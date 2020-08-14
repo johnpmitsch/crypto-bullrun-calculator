@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import TransactionForm from './TransactionForm';
 import Transaction from './Transaction';
 
@@ -10,12 +10,18 @@ const Transactions = () => {
   };
 
   return (
-    <Fragment>
-      <TransactionForm addTransaction={addTransaction} />
-      {transactions.map(({ name, price, amount }, i) => (
-        <Transaction key={`${name}${i}`} {...{ name, price, amount }} />
-      ))}
-    </Fragment>
+    <div className="flex flex-wrap -mx-2">
+      <div className="w-full px-2">
+        <div className="rounded border-2 border-border p-2 text-center items-center">
+          <h3 className="text-lg font-bold">New Transaction</h3>
+          <TransactionForm addTransaction={addTransaction} />
+        </div>
+
+        {transactions.map(({ name, price, amount }, i) => (
+          <Transaction key={`${name}${i}`} {...{ name, price, amount }} />
+        ))}
+      </div>
+    </div>
   );
 };
 
