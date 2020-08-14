@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import TransactionForm from './TransactionForm';
+import Transaction from './Transaction';
 
 const Transactions = () => {
   const [transactions, setTransactions] = useState([]);
@@ -12,11 +13,7 @@ const Transactions = () => {
     <Fragment>
       <TransactionForm addTransaction={addTransaction} />
       {transactions.map(({ name, price, amount }, i) => (
-        <Fragment key={`${name}${i}`}>
-          <div>{name}</div>
-          <div>{price}</div>
-          <div>{amount}</div>
-        </Fragment>
+        <Transaction key={`${name}${i}`} {...{ name, price, amount }} />
       ))}
     </Fragment>
   );
