@@ -16,11 +16,7 @@ export default function Home() {
           Crypto Exit Plan
         </h1>
 
-        <p className="text-3xl text-center mb-4 font-bold">
-          Stop obsessively checking your cryptocurrency portfolio.
-        </p>
-
-        <p className="text-2xl text-center mb-4">
+        <p className="text-2xl text-center mb-12">
           Be a savy investor and plan when to sell your cryptocurrencies. Get
           started by entering a transaction.
         </p>

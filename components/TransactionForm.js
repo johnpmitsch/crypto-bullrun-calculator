@@ -7,7 +7,7 @@ const TransactionForm = ({ addTransaction }) => {
   const { errors, register, setValue, handleSubmit } = useForm();
   const inputClass =
     'bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 appearance-none text';
-  const newTransactionClass = 'w-1/3 lg:w-full lg:items-center p-2';
+  const newTransactionClass = 'w-full lg:w-1/3 items-end';
 
   const onSubmit = ({ name, amount, price }) => {
     addTransaction({ name, amount, price });
@@ -28,8 +28,8 @@ const TransactionForm = ({ addTransaction }) => {
         <ErrorAlert message={'Price is required and must be a valid number'} />
       )}
 
-      <form className={'w-full'} onSubmit={handleSubmit(onSubmit)}>
-        <div className="lg:flex my-6">
+      <div className="w-full px-2">
+        <form className={'flex flex-wrap'} onSubmit={handleSubmit(onSubmit)}>
           <div className={newTransactionClass}>
             <span>I bought&nbsp;</span>
             <NumberInput
@@ -41,7 +41,7 @@ const TransactionForm = ({ addTransaction }) => {
           <div className={newTransactionClass}>
             <span>&nbsp;of&nbsp;</span>
             <input
-              className={inputClass}
+              className={`${inputClass} flex-grow`}
               placeholder="name of cryptocurrency"
               name="name"
               type="text"
@@ -60,8 +60,8 @@ const TransactionForm = ({ addTransaction }) => {
             type="submit"
             className="bg-primary hover:bg-primaryHover text-background font-bold py-2 px-4 rounded"
           />
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };
