@@ -4,35 +4,28 @@ import DarkModeToggle from '../components/DarkModeToggle';
 
 export default function Home() {
   return (
-    <div className="flex items-center justify-center h-screen">
-      <DarkModeToggle />
+    <div>
       <Head>
-        <title>Crypto Bull Run Calculator</title>
+        <title>Crypto Exit Plan</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <main className="container mx-auto my-8 p-4 justify-center leading-normal">
+        <DarkModeToggle />
         <h1 className="text-5xl text-center font-extrabold">
-          Crypto Bull Run Calculator
+          Crypto Exit Plan
         </h1>
 
-        <p className="text-3xl text-center">
-          Be a smart investor and plan when you sell your cryptocurrencies. Get
+        <p className="text-3xl text-center mb-4 font-bold">
+          Stop obsessively checking your cryptocurrency portfolio.
+        </p>
+
+        <p className="text-2xl text-center mb-4">
+          Be a savy investor and plan when to sell your cryptocurrencies. Get
           started by entering a transaction.
         </p>
 
-        <div className="flex flex-wrap mb-1 text-center">
-          <div className="w-1/3 px-2"></div>
-          <div className="w-1/3 ml-auto px-2">
-            <h3 className="text-lg font-bold">New Transaction</h3>
-          </div>
-          <div className="w-1/3 px-2"></div>
-          <div className="w-1/3 px-2"></div>
-          <div className="w-1/3 px-2 bg-gray-200 rounded p-4">
-            <Transactions />
-          </div>
-          <div className="w-1/3 px-2"></div>
-        </div>
+        <Transactions />
       </main>
     </div>
   );
