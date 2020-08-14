@@ -1,6 +1,13 @@
+@import './vars.css';
+
 /* purgecss start ignore */
 @tailwind base;
 @tailwind components;
 /* purgecss end ignore */
 
 @tailwind utilities;
+
+body {
+  background: var(--color-background);
+  color: var(--color-text);
+}

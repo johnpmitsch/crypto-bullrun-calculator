@@ -1,9 +1,11 @@
 import Head from 'next/head';
 import Transactions from '../components/Transactions';
+import DarkModeToggle from '../components/DarkModeToggle';
 
 export default function Home() {
   return (
     <div className="flex items-center justify-center h-screen">
+      <DarkModeToggle />
       <Head>
         <title>Crypto Bull Run Calculator</title>
         <link rel="icon" href="/favicon.ico" />

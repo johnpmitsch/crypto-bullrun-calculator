@@ -1,30 +1,28 @@
-// name
-// amount
-// bought at
-
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import ErrorAlert from './ErrorAlert';
+import NumberInput from './inputs/NumberInput';
 
 const TransactionForm = ({ addTransaction }) => {
-  const { errors, register, handleSubmit } = useForm();
+  const { errors, register, setValue, handleSubmit } = useForm();
   const inputClass =
     'bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 appearance-none';
 
   const onSubmit = ({ name, amount, price }) => {
     addTransaction({ name, amount, price });
+    setValue('name', '');
+    setValue('amount', null);
+    setValue('price', null);
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="items-center">I bought&nbsp;</div>
       <div className="items-center">
-        <input
-          className={inputClass}
-          placeholder="amount"
-          name="amount"
-          type="number"
-          step="any"
+        <NumberInput
           ref={register({ required: true, min: 0 })}
+          name={'amount'}
+          placeholder={'amount'}
         />
       </div>
       <div className="items-center">&nbsp;of&nbsp;</div>
@@ -39,39 +37,25 @@ const TransactionForm = ({ addTransaction }) => {
       </div>
       <div className="items-center">&nbsp;at&nbsp;</div>
       <div className="items-center">
-        <input
-          className={inputClass}
-          placeholder="price at purchase"
-          name="price"
-          type="number"
-          step="any"
+        <NumberInput
           ref={register({ required: true, min: 0 })}
+          placeholder={'price at purchase'}
+          name={'price'}
         />
       </div>
       <div className="items-center">
-        {errors.name && (
-          <div
-            className="w-full bg-red-100 border border-red-400 text-red-700 my-1 p-2 rounded"
-            role="alert"
-          >
-            Name is required
-          </div>
-        )}
         {errors.amount && (
-          <div
-            className="w-full bg-red-100 border border-red-400 text-red-700 my-1 p-2 rounded"
-            role="alert"
-          >
-            Amount is required and must be a valid number
-          </div>
+          <ErrorAlert
+            message={'Amount is required and must be a valid number'}
+          />
+        )}
+        {errors.name && (
+          <ErrorAlert message={'Name of cryptocurrency is required'} />
         )}
         {errors.price && (
-          <div
-            className="w-full bg-red-100 border border-red-400 text-red-700 my-1 p-2 rounded"
-            role="alert"
-          >
-            Price is required and must be a valid number
-          </div>
+          <ErrorAlert
+            message={'Price is required and must be a valid number'}
+          />
         )}
       </div>
       <input
