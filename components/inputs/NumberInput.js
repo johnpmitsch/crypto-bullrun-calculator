@@ -1,9 +1,9 @@
-import React, { Fragment, forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import basicInputClass from './classes';
 
 const NumberInput = forwardRef(({ placeholder, name }, ref) => {
   return (
-    <Fragment>
+    <span className={'max-width-xs'}>
       <input
         className={basicInputClass}
         placeholder={placeholder}
@@ -12,7 +12,7 @@ const NumberInput = forwardRef(({ placeholder, name }, ref) => {
         step="any"
         ref={ref}
       />
-    </Fragment>
+    </span>
   );
 });
 
