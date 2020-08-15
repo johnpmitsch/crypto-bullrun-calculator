@@ -1,6 +1,7 @@
 :root {
   --color-text: #191924;
-  --color-background: #fff;
+  --color-background: #ebf2f8;
+  --color-secondary-background: #fff;
   --color-heading: #07070a;
 
   --color-primary: #1da1f2;
@@ -19,11 +20,13 @@
   --color-border-hover: #b9bdb3;
 
   --color-red: #ea0000;
+  --color-light-gray: #e2e8f0;
 }
 
 :root[data-color-scheme='dark'] {
   --color-text: #fff;
   --color-background: #0d202d;
+  --color-secondary-background: #192a36;
   --color-heading: #fff;
 
   --color-primary: #3b9bd7;
