@@ -18,7 +18,7 @@ export default function Home() {
 
         <p className="text-2xl text-center mb-12">
           Be a savy investor and plan when to sell your cryptocurrencies. Get
-          started by entering a transaction.
+          started by entering a previous transaction.
         </p>
 
         <Transactions />

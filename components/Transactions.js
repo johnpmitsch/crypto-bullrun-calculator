@@ -20,7 +20,6 @@ const Transactions = () => {
     <div className="flex flex-wrap -mx-2">
       <div className="w-full px-2">
         <div className="p-2 text-center items-center">
-          <h3 className="text-lg font-bold">New Transaction</h3>
           <TransactionForm addTransaction={addTransaction} />
         </div>
 
